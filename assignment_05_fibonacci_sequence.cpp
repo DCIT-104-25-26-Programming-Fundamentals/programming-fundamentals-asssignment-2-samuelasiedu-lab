@@ -48,6 +48,89 @@
 // YOUR CODE BELOW — remove the // symbols from the scaffold and fill it in
 // =============================================================================
 
+
 #include <iostream>
 using namespace std;
 
+// Function prototypes
+void printFibonacci(int n);
+bool isFibonacci(int number);
+
+int main() {
+    int n, target;
+
+    
+    cout << "=== PART A: Print Fibonacci Sequence ===" << endl;
+    cout << "How many terms? ";
+    cin >> n;
+
+    printFibonacci(n);
+
+    cout << "\n=== PART B: Check Fibonacci Number ===" << endl;
+    cout << "Enter a number to check: ";
+    cin >> target;
+
+    if (isFibonacci(target)) {
+        cout << target << " is a Fibonacci number." << endl;
+    } else {
+        cout << target << " is NOT a Fibonacci number." << endl;
+    }
+
+    return 0;
+}
+
+// Function to print the first N Fibonacci numbers using an iterative loop
+void printFibonacci(int n) {
+    // Validate positive integer requirement
+    if (n <= 0) {
+        cout << "Error: Number of terms must be a positive integer." << endl;
+        return;
+    }
+
+    long long first = 0, second = 1;
+
+    cout << "Fibonacci sequence: ";
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            cout << first << " ";
+            continue;
+        }
+        if (i == 1) {
+            cout << second << " ";
+            continue;
+        }
+
+        long long next = first + second;
+        cout << next << " ";
+        first = second;
+        second = next;
+    }
+    cout << endl;
+}
+
+// Function to check if a given number belongs to the Fibonacci sequence
+bool isFibonacci(int number) {
+    if (number < 0) {
+        return false;
+    }
+
+    // Base cases
+    if (number == 0 || number == 1) {
+        return true;
+    }
+
+    long long first = 0, second = 1;
+    long long next = first + second;
+
+    // Generate sequence terms until we reach or exceed the target number
+    while (next <= number) {
+        if (next == number) {
+            return true;
+        }
+        first = second;
+        second = next;
+        next = first + second;
+    }
+
+    return false;
+}
