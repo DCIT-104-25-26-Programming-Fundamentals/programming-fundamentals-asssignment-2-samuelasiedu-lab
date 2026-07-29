@@ -42,7 +42,6 @@
 #include <iostream>
 using namespace std;
 
-
 // Function prototypes
 int calculateSum(const int arr[], int size);
 double calculateAverage(const int arr[], int size);
