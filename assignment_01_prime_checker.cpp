@@ -37,3 +37,39 @@
 #include <iostream>
 using namespace std;
 
+// Function prototype
+bool isPrime(int n);
+
+int main() {
+    int num;
+
+    std::cout << "Enter a number: ";
+    std::cin >> num;
+
+    // Call the function and output the result
+    if (isPrime(num)) {
+        std::cout << num << " is a prime number." << std::endl;
+    } else {
+        std::cout << num << " is not a prime number." << std::endl;
+    }
+
+    return 0;
+}
+
+// Function implementation
+bool isPrime(int n) {
+    // Requirement: Numbers less than 2 are NOT prime
+    if (n < 2) {
+        return false;
+    }
+
+    // Check for factors from 2 up to sqrt(n)
+    // (i * i <= n is equivalent to i <= sqrt(n), but avoids floating-point operations)
+    for (int i = 2; i * i <= n; i++) {
+        if (n % i == 0) {
+            return false; // Found a factor, so n is not prime
+        }
+    }
+
+    return true; // No factors found, n is prime
+}
